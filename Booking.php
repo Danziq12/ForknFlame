@@ -80,7 +80,7 @@
         <div class="col-lg-8">
           <div class="card booking-card bg-white p-4 p-md-5">
             
-            <form id="bookingForm" action="process-booking.php" method="POST">
+            <form id="bookingForm" action="Process.php" method="POST">
               <div class="row g-3">
                 
                 <!-- Full Name -->
