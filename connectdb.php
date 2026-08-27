@@ -1,10 +1,10 @@
 <?php
 // Dynamic environment variables with fallback defaults
-$servername = getenv('MYSQLHOST')     ?: "mysql.railway.internal";
+$servername = getenv('MYSQLHOST')     ?: "sakura.proxy.rlwy.net";
 $username   = getenv('MYSQLUSER')     ?: "root";
 $password   = getenv('MYSQLPASSWORD') ?: "AOUrkudaIYJYTZTCuSrXkcKfCOzYZWid";
 $dbname     = getenv('MYSQLDATABASE') ?: "railway";
-$port       = getenv('MYSQLPORT')     ?: 3306;
+$port       = getenv('MYSQLPORT')     ?: 36398;
 
 // Create connection including the $port parameter
 $conn = new mysqli($servername, $username, $password, $dbname, (int)$port);
