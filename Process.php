@@ -2,12 +2,19 @@
 // Set response type to JSON for the AJAX request
 header('Content-Type: application/json');
 
-// Include existing database connection file
+// Enable error reporting for debugging output inside JSON
+ini_set('display_errors', 0);
+error_reporting(E_ALL);
+
+// Include database connection
 require_once 'connectdb.php';
 
 // Verify database connection variable exists
 if (!isset($conn) || $conn->connect_error) {
-    echo json_encode(['success' => false, 'message' => 'Database connection failed.']);
+    echo json_encode([
+        'success' => false, 
+        'message' => 'Database connection variable not available.'
+    ]);
     exit();
 }
 
@@ -32,17 +39,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
-        // Change 'i' to 's' for guests if stored as INT in DB (e.g., "issssss")
         $stmt->bind_param("sssssss", $full_name, $phone, $email, $guests, $booking_date, $booking_time, $special_requests);
 
         if ($stmt->execute()) {
             echo json_encode(['success' => true, 'message' => 'Reservation saved successfully.']);
         } else {
-            echo json_encode(['success' => false, 'message' => 'Failed to execute query: ' . $stmt->error]);
+            echo json_encode(['success' => false, 'message' => 'Query execution error: ' . $stmt->error]);
         }
         $stmt->close();
     } else {
-        echo json_encode(['success' => false, 'message' => 'Failed to prepare query: ' . $conn->error]);
+        echo json_encode(['success' => false, 'message' => 'Query preparation error: ' . $conn->error]);
     }
 } else {
     echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
