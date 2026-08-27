@@ -1,5 +1,5 @@
 <?php
-$servername = "maglev.proxy.rlwy.net";
+$servername = "mysql.railway.internal";
 $username   = "root";
 $password   = "AOUrkudaIYJYTZTCuSrXkcKfCOzYZWid";
 $dbname     = "railway";
