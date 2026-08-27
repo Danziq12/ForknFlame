@@ -229,10 +229,14 @@
           } else {
             alert('Error: ' + result.message);
           }
-        } catch (error) {
+          } catch (error) {
+            console.error('Submission error:', error);
+            alert('Error details: ' + error.message);
+          }
+        /*} catch (error) {
           console.error('Submission error:', error);
           alert('An error occurred while submitting your booking.');
-        }
+        }*/
       });
     }
   });
