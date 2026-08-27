@@ -7,7 +7,7 @@ $dbname     = getenv('MYSQLDATABASE') ?: "railway";
 $port       = getenv('MYSQLPORT')     ?: 36398;
 
 // Create connection including the $port parameter
-$conn = new mysqli($servername, $username, $password, $dbname, (int)$port);
+$conn = new mysqli($servername, $username, $password, $dbname, $port);
 
 // Check connection
 if ($conn->connect_error) {
