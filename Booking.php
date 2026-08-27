@@ -204,11 +204,29 @@
         const formData = new FormData(bookingForm);
 
         try {
-          const response = await fetch('Process.php', {
-            method: 'POST',
-            body: formData
-          });
+  const response = await fetch('Process.php', {
+    method: 'POST',
+    body: formData
+  });
 
+  const responseText = await response.text();
+
+  let result;
+  try {
+    result = JSON.parse(responseText);
+  } catch (err) {
+    alert('Server output non-JSON:\n' + responseText);
+    return;
+  }
+
+  if (result.success) {
+    // Populate Modal & show...
+  } else {
+    alert('Database Error: ' + result.message);
+  }
+} catch (error) {
+  alert('Network error: ' + error.message);
+}
           const result = await response.json();
 
           if (result.success) {
