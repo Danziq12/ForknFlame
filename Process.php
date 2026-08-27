@@ -2,22 +2,16 @@
 // Set response type to JSON for the AJAX request
 header('Content-Type: application/json');
 
-// Database configuration
-$host     = "localhost";
-$username = "root";       // Replace with your DB username
-$password = "";           // Replace with your DB password
-$dbname   = "forkandflame";
+// Include existing database connection file
+require_once 'dbconnect.php';
 
-// 1. Establish database connection
-$conn = new mysqli($host, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    echo json_encode(['success' => false, 'message' => 'Database connection failed: ' . $conn->connect_error]);
+// Verify database connection variable exists
+if (!isset($conn) || $conn->connect_error) {
+    echo json_encode(['success' => false, 'message' => 'Database connection failed.']);
     exit();
 }
 
-// 2. Process POST data
+// Process POST data
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $full_name        = trim($_POST['full_name'] ?? '');
     $phone            = trim($_POST['phone'] ?? '');
@@ -33,11 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
 
-    // 3. Insert record using Prepared Statement
+    // Insert record using Prepared Statement
     $sql = "INSERT INTO reservations (full_name, phone, email, guests, booking_date, booking_time, special_requests) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
 
     if ($stmt) {
+        // Change 'i' to 's' for guests if stored as INT in DB (e.g., "issssss")
         $stmt->bind_param("sssssss", $full_name, $phone, $email, $guests, $booking_date, $booking_time, $special_requests);
 
         if ($stmt->execute()) {
