@@ -1,15 +1,16 @@
 <?php
-$servername = "mysql.railway.internal";
-$username   = "root";
-$password   = "AOUrkudaIYJYTZTCuSrXkcKfCOzYZWid";
-$dbname     = "railway";
+// Dynamic environment variables with fallback defaults
+$servername = getenv('MYSQLHOST')     ?: "mysql.railway.internal";
+$username   = getenv('MYSQLUSER')     ?: "root";
+$password   = getenv('MYSQLPASSWORD') ?: "AOUrkudaIYJYTZTCuSrXkcKfCOzYZWid";
+$dbname     = getenv('MYSQLDATABASE') ?: "railway";
+$port       = getenv('MYSQLPORT')     ?: 3306;
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Create connection including the $port parameter
+$conn = new mysqli($servername, $username, $password, $dbname, (int)$port);
 
 // Check connection
 if ($conn->connect_error) {
-    // Return JSON error if connection fails instead of die()
     header('Content-Type: application/json');
     echo json_encode(['success' => false, 'message' => 'Database connection failed: ' . $conn->connect_error]);
     exit();
