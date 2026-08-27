@@ -3,10 +3,9 @@ $servername = "maglev.proxy.rlwy.net";
 $username   = "root";
 $password   = "AOUrkudaIYJYTZTCuSrXkcKfCOzYZWid";
 $dbname     = "railway";
-$port       = 23881;
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
