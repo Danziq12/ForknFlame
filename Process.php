@@ -3,7 +3,7 @@
 header('Content-Type: application/json');
 
 // Include existing database connection file
-require_once 'dbconnect.php';
+require_once 'connectdb.php';
 
 // Verify database connection variable exists
 if (!isset($conn) || $conn->connect_error) {
