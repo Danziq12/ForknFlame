@@ -24,7 +24,7 @@ try {
         $time     = $_POST['booking_time'] ?? '';
         $requests = $_POST['special_requests'] ?? '';
 
-        $stmt = $pdo->prepare("INSERT INTO bookings (full_name, phone, email, guests, booking_date, booking_time, special_requests) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO reservations (full_name, phone, email, guests, booking_date, booking_time, special_requests) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([$fullName, $phone, $email, $guests, $date, $time, $requests]);
 
         echo json_encode(['success' => true]);
