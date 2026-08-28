@@ -54,7 +54,7 @@
 
     }
 
-
+    
 
     /* Modern Dark Theme Confirmation Modal */
 
@@ -62,7 +62,7 @@
 
       background-color: #141414;
 
-      color: #ffffff;
+      color: #f1f1f1;
 
       border: 1px solid #2a2a2a;
 
@@ -74,6 +74,14 @@
 
     }
 
+.custom-modal-content h3,
+.custom-modal-content h4,
+.custom-modal-content .modal-title {
+  color: #ffffff !important;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
 
 
     .modal-icon-wrapper {
