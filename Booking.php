@@ -7,7 +7,6 @@
 
   <!-- Bootstrap 5 CSS -->
   <link rel="stylesheet" href="bootstrap.css">
-  <link rel="stylesheet" href="style.css">
   <style>
     /* Booking Form Adjustments */
     .booking-section {
