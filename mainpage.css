@@ -33,36 +33,7 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   2. BOOTSTRAP NAVBAR OVERRIDES
-   ========================================================================== */
-.navbar {
-  background-color: rgba(15, 15, 15, 0.95) !important;
-  border-bottom: 1px solid #222;
-}
-
-.navbar-brand {
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: #e5a93c !important;
-  text-transform: uppercase;
-}
-
-.nav-link {
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  color: #ccc !important;
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  color: #e5a93c !important;
-}
-
-/* ==========================================================================
-   3. BUTTONS & INPUT OVERRIDES
+   2. BUTTONS & INPUT OVERRIDES
    ========================================================================== */
 .btn-gold-action,
 .btn-primary-custom {
@@ -102,7 +73,7 @@ h1, h2, h3, h4 {
 }
 
 /* ==========================================================================
-   4. CARDS & CONTENT BLOCKS
+   3. CARDS & CONTENT BLOCKS
    ========================================================================== */
 .feature-card,
 .booking-card {
