@@ -1,4 +1,6 @@
-/* Global Dark Theme Settings */
+/* ==========================================================================
+   1. GLOBAL DARK THEME & BASE STYLES
+   ========================================================================== */
 body {
   background-color: #0f0f0f;
   color: #e0e0e0;
@@ -8,16 +10,34 @@ body {
   flex-direction: column;
 }
 
-/* Custom Gold Accent Utility */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  color: #fff;
+}
+
+.sub-heading {
+  color: #e5a93c;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
 .text-gold {
   color: #e5a93c !important;
 }
 
-/* Navigation Bar Styling */
+/* ==========================================================================
+   2. BOOTSTRAP NAVBAR OVERRIDES
+   ========================================================================== */
 .navbar {
   background-color: rgba(15, 15, 15, 0.95) !important;
   border-bottom: 1px solid #222;
-  padding: 1rem 2rem;
 }
 
 .navbar-brand {
@@ -32,7 +52,6 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 0.9rem;
-  margin-left: 1rem;
   color: #ccc !important;
   transition: color 0.3s ease;
 }
@@ -42,7 +61,9 @@ body {
   color: #e5a93c !important;
 }
 
-/* Buttons */
+/* ==========================================================================
+   3. BUTTONS & INPUT OVERRIDES
+   ========================================================================== */
 .btn-gold-action,
 .btn-primary-custom {
   background-color: #e5a93c;
@@ -62,22 +83,6 @@ body {
   color: #fff;
 }
 
-/* Cards & Content Blocks */
-.feature-card,
-.booking-card {
-  background: #181818 !important;
-  border: 1px solid #2a2a2a !important;
-  border-radius: 16px;
-  color: #fff;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
-  border-color: #e5a93c !important;
-}
-
-/* Inputs & Form Fields */
 .form-control,
 .form-select {
   background-color: #222 !important;
@@ -91,15 +96,24 @@ body {
   box-shadow: 0 0 0 0.25rem rgba(229, 169, 60, 0.25) !important;
 }
 
-/* Headings */
-h1, h2, h3, h4 {
-  color: #fff;
+/* Placeholder text coloring */
+.form-control::placeholder {
+  color: #777 !important;
 }
 
-.sub-heading {
-  color: #e5a93c;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-size: 0.85rem;
-  font-weight: 600;
+/* ==========================================================================
+   4. CARDS & CONTENT BLOCKS
+   ========================================================================== */
+.feature-card,
+.booking-card {
+  background: #181818 !important;
+  border: 1px solid #2a2a2a !important;
+  border-radius: 16px;
+  color: #fff;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: #e5a93c !important;
 }
