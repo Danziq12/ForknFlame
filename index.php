@@ -113,9 +113,6 @@
                         <a class="nav-link" href="Booking.php">Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="reservations.php">Reservations</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="AboutUs.php">About Us</a>
                     </li>
                 </ul>
