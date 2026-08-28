@@ -6,7 +6,6 @@
         <title>About Us | Fork & Flame</title>
         <link rel="stylesheet" href="bootstrap.css">
         <link rel="stylesheet" href="about.css">
-        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
