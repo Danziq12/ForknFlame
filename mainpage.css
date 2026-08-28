@@ -1,9 +1,9 @@
 /* ==========================================================================
-   1. GLOBAL DARK THEME & BASE STYLES
+   1. GLOBAL LIGHT THEME & BASE STYLES
    ========================================================================== */
 body {
-  background-color: #0f0f0f;
-  color: #e0e0e0;
+  background-color: #ffffff;
+  color: #222222;
   font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   min-height: 100vh;
   display: flex;
@@ -17,11 +17,11 @@ body {
 
 /* Headings */
 h1, h2, h3, h4 {
-  color: #fff;
+  color: #111111 !important;
 }
 
 .sub-heading {
-  color: #e5a93c;
+  color: #d49228;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   font-size: 0.85rem;
@@ -29,36 +29,64 @@ h1, h2, h3, h4 {
 }
 
 .text-gold {
-  color: #e5a93c !important;
+  color: #d49228 !important;
+}
+
+/* Hero Section Formatting */
+.hero-section {
+  padding: 80px 20px 50px 20px;
+  text-align: center;
+  background-color: #fcfcfc;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #111111 !important;
+  margin-bottom: 15px;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #555555 !important;
+  max-width: 650px;
+  margin: 0 auto 30px auto;
 }
 
 /* ==========================================================================
    2. BUTTONS & INPUT OVERRIDES
    ========================================================================== */
 .btn-gold-action,
-.btn-primary-custom {
+.btn-primary-custom,
+.btn-reserve {
   background-color: #e5a93c;
-  color: #000;
+  color: #000000 !important;
   font-weight: 700;
   border: none;
   padding: 12px 30px;
   border-radius: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  text-decoration: none;
+  display: inline-block;
   transition: all 0.3s ease;
 }
 
 .btn-gold-action:hover,
-.btn-primary-custom:hover {
+.btn-primary-custom:hover,
+.btn-reserve:hover {
   background-color: #c99028;
-  color: #fff;
+  color: #ffffff !important;
+  transform: translateY(-2px);
 }
 
 .form-control,
 .form-select {
-  background-color: #222 !important;
-  border: 1px solid #333 !important;
-  color: #fff !important;
+  background-color: #ffffff !important;
+  border: 1px solid #cccccc !important;
+  color: #111111 !important;
 }
 
 .form-control:focus,
@@ -69,7 +97,7 @@ h1, h2, h3, h4 {
 
 /* Placeholder text coloring */
 .form-control::placeholder {
-  color: #777 !important;
+  color: #888888 !important;
 }
 
 /* ==========================================================================
@@ -77,14 +105,30 @@ h1, h2, h3, h4 {
    ========================================================================== */
 .feature-card,
 .booking-card {
-  background: #181818 !important;
-  border: 1px solid #2a2a2a !important;
+  background: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
   border-radius: 16px;
-  color: #fff;
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  color: #333333;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card h4 {
+  color: #d49228 !important;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.feature-card p {
+  color: #555555 !important;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
 }
 
 .feature-card:hover {
   transform: translateY(-5px);
   border-color: #e5a93c !important;
+  box-shadow: 0 8px 25px rgba(229, 169, 60, 0.2);
 }
