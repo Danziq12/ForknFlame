@@ -1,38 +1,37 @@
 <?php
 header('Content-Type: application/json');
 
-// Include database connection
-require_once 'connectdb.php';
+// Get Railway environment variables or fallback to defaults
+$host     = $_ENV['MYSQLHOST']     ?? '127.0.0.1';
+$user     = $_ENV['MYSQLUSER']     ?? 'root';
+$password = $_ENV['MYSQLPASSWORD'] ?? '';
+$database = $_ENV['MYSQLDATABASE'] ?? 'fork_and_flame';
+$port     = $_ENV['MYSQLPORT']     ?? 3306;
 
-if (!isset($conn)) {
-    echo json_encode(['success' => false, 'message' => 'Database connection variable not available.']);
-    exit();
-}
+try {
+    $dsn = "mysql:host=$host;port=$port;dbname=$database;charset=utf8mb4";
+    $pdo = new PDO($dsn, $user, $password, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]);
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $full_name        = trim($_POST['full_name'] ?? '');
-    $phone            = trim($_POST['phone'] ?? '');
-    $email            = trim($_POST['email'] ?? '');
-    $guests           = trim($_POST['guests'] ?? '');
-    $booking_date     = trim($_POST['booking_date'] ?? '');
-    $booking_time     = trim($_POST['booking_time'] ?? '');
-    $special_requests = !empty($_POST['special_requests']) ? trim($_POST['special_requests']) : null;
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $fullName = $_POST['full_name'] ?? '';
+        $phone    = $_POST['phone'] ?? '';
+        $email    = $_POST['email'] ?? '';
+        $guests   = $_POST['guests'] ?? '';
+        $date     = $_POST['booking_date'] ?? '';
+        $time     = $_POST['booking_time'] ?? '';
+        $requests = $_POST['special_requests'] ?? '';
 
-    if (empty($full_name) || empty($phone) || empty($email) || empty($guests) || empty($booking_date) || empty($booking_time)) {
-        echo json_encode(['success' => false, 'message' => 'Please fill in all required fields.']);
-        exit();
+        $stmt = $pdo->prepare("INSERT INTO bookings (full_name, phone, email, guests, booking_date, booking_time, special_requests) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$fullName, $phone, $email, $guests, $date, $time, $requests]);
+
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
     }
-
-    try {
-        $sql = "INSERT INTO reservations (full_name, phone, email, guests, booking_date, booking_time, special_requests) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute([$full_name, $phone, $email, $guests, $booking_date, $booking_time, $special_requests]);
-
-        echo json_encode(['success' => true, 'message' => 'Reservation saved successfully.']);
-    } catch (PDOException $e) {
-        echo json_encode(['success' => false, 'message' => 'Database Error: ' . $e->getMessage()]);
-    }
-} else {
-    echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
+} catch (PDOException $e) {
+    echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
 }
 ?>
