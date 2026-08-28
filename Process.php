@@ -2,11 +2,11 @@
 header('Content-Type: application/json');
 
 // Get Railway environment variables or fallback to defaults
-$host     = $_ENV['MYSQLHOST']     ?? '127.0.0.1';
-$user     = $_ENV['MYSQLUSER']     ?? 'root';
-$password = $_ENV['MYSQLPASSWORD'] ?? '';
-$database = $_ENV['MYSQLDATABASE'] ?? 'fork_and_flame';
-$port     = $_ENV['MYSQLPORT']     ?? 3306;
+$servername = getenv('MYSQLHOST')     ?: "mysql.railway.internal";
+$username   = getenv('MYSQLUSER')     ?: "root";
+$password   = getenv('MYSQLPASSWORD') ?: "AOUrkudaIYJYTZTCuSrXkcKfCOzYZWid";
+$dbname     = getenv('MYSQLDATABASE') ?: "railway";
+$port       = getenv('MYSQLPORT')     ?: 3306;
 
 try {
     $dsn = "mysql:host=$host;port=$port;dbname=$database;charset=utf8mb4";
