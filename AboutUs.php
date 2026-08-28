@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>About Us | Fork & Flame</title>
         <link rel="stylesheet" href="about.css">
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
