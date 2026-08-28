@@ -1,85 +1,181 @@
-/* Modern Dark Theme Confirmation Modal */
-.custom-modal-content {
-  background-color: #141414;
-  color: #f1f1f1;
-  border: 1px solid #2a2a2a;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-}
+/* Booking Form Adjustments */
 
-/* Modal Title Contrast Fix */
-.custom-modal-content h3,
-.custom-modal-content h4,
-.custom-modal-content .modal-title {
-  color: #ffffff !important;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
+    .booking-section {
 
-/* Modal Subtitle & Paragraph Contrast Fix */
-.custom-modal-content p,
-.custom-modal-content span {
-  color: #d0d0d0 !important;
-}
+      padding: 60px 0;
 
-.modal-icon-wrapper {
-  width: 70px;
-  height: 70px;
-  background: rgba(229, 169, 60, 0.15);
-  border: 2px solid #e5a93c;
-  color: #e5a93c;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 15px auto;
-  font-size: 2rem;
-}
+    }
 
-.summary-card {
-  background-color: #1c1c1c;
-  border: 1px solid #282828;
-  border-radius: 12px;
-}
 
-.summary-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px 15px;
-  border-bottom: 1px solid #282828;
-  font-size: 0.95rem;
-  color: #aaaaaa; /* Left side label color */
-}
 
-.summary-item strong,
-.summary-item span:last-child {
-  color: #ffffff; /* Right side value color */
-  font-weight: 600;
-}
+    .booking-card {
 
-.summary-item:last-child {
-  border-bottom: none;
-}
+      border-radius: 16px;
 
-.text-gold {
-  color: #e5a93c !important;
-}
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
 
-.btn-gold-action {
-  background-color: #e5a93c;
-  color: #000;
-  font-weight: 700;
-  border: none;
-  padding: 10px 25px;
-  border-radius: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-}
+      border: none;
 
-.btn-gold-action:hover {
-  background-color: #c99028;
-  color: #fff;
-}
+    }
+
+
+
+    .form-control:focus,
+
+    .form-select:focus {
+
+      border-color: #c97a3e;
+
+      box-shadow: 0 0 0 0.25rem rgba(201, 122, 62, 0.25);
+
+    }
+
+
+
+    .btn-primary-custom {
+
+      background-color: #1a1a1a;
+
+      border-color: #1a1a1a;
+
+      color: #fff;
+
+    }
+
+
+
+    .btn-primary-custom:hover {
+
+      background-color: #c97a3e;
+
+      border-color: #c97a3e;
+
+      color: #fff;
+
+    }
+
+
+
+    /* Modern Dark Theme Confirmation Modal */
+
+    .custom-modal-content {
+
+      background-color: #141414;
+
+      color: #ffffff;
+
+      border: 1px solid #2a2a2a;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+
+    }
+
+
+
+    .modal-icon-wrapper {
+
+      width: 70px;
+
+      height: 70px;
+
+      background: rgba(229, 169, 60, 0.1);
+
+      border: 2px solid #e5a93c;
+
+      color: #e5a93c;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      margin: 0 auto 15px auto;
+
+      font-size: 2rem;
+
+    }
+
+
+
+    .summary-card {
+
+      background-color: #1c1c1c;
+
+      border: 1px solid #282828;
+
+      border-radius: 12px;
+
+    }
+
+
+
+    .summary-item {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      padding: 10px 15px;
+
+      border-bottom: 1px solid #282828;
+
+      font-size: 0.95rem;
+
+    }
+
+
+
+    .summary-item:last-child {
+
+      border-bottom: none;
+
+    }
+
+
+
+    .text-gold {
+
+      color: #e5a93c;
+
+    }
+
+
+
+    .btn-gold-action {
+
+      background-color: #e5a93c;
+
+      color: #000;
+
+      font-weight: 700;
+
+      border: none;
+
+      padding: 10px 25px;
+
+      border-radius: 8px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.5px;
+
+      transition: all 0.3s ease;
+
+    }
+
+
+
+    .btn-gold-action:hover {
+
+      background-color: #c99028;
+
+      color: #fff;
+
+    }
