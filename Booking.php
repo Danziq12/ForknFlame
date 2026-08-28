@@ -38,7 +38,68 @@
       color: #fff;
     }
 
-    
+    /* Modern Dark Theme Confirmation Modal */
+    .custom-modal-content {
+      background-color: #141414;
+      color: #f1f1f1;
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-icon-wrapper {
+      width: 70px;
+      height: 70px;
+      background: rgba(229, 169, 60, 0.1);
+      border: 2px solid #e5a93c;
+      color: #e5a93c;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px auto;
+      font-size: 2rem;
+    }
+
+    .summary-card {
+      background-color: #1c1c1c;
+      border: 1px solid #282828;
+      border-radius: 12px;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 15px;
+      border-bottom: 1px solid #282828;
+      font-size: 0.95rem;
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+    }
+
+    .text-gold {
+      color: #e5a93c;
+    }
+
+    .btn-gold-action {
+      background-color: #e5a93c;
+      color: #000;
+      font-weight: 700;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-gold-action:hover {
+      background-color: #c99028;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -156,28 +217,46 @@
     </div>
   </section>
 
-  <!-- Reservation Confirmation Modal -->
+  <!-- Redesigned Reservation Confirmation Modal -->
   <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content border-0 shadow">
-        <div class="modal-header bg-dark text-white">
-          <h5 class="modal-title" id="confirmationModalLabel">Booking Request Received</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-content custom-modal-content text-center p-4">
+        
+        <div class="modal-body p-2">
+          <!-- Checkmark Badge -->
+          <div class="modal-icon-wrapper">
+            ✓
+          </div>
+
+          <h3 class="fw-bold mb-1" id="confirmationModalLabel">Reservation Received</h3>
+          <p class="text-secondary small mb-4">We are excited to host you at Fork & Flame, <span id="summaryName" class="text-white fw-bold"></span>!</p>
+
+          <!-- Reservation Card Summary -->
+          <div class="summary-card mb-4">
+            <div class="summary-item">
+              <span class="text-secondary">Date</span>
+              <strong id="summaryDate" class="text-white"></strong>
+            </div>
+            <div class="summary-item">
+              <span class="text-secondary">Time</span>
+              <strong id="summaryTime" class="text-gold"></strong>
+            </div>
+            <div class="summary-item">
+              <span class="text-secondary">Party Size</span>
+              <strong id="summaryGuests" class="text-white"></strong>
+            </div>
+          </div>
+
+          <p class="text-secondary extra-small mb-0" style="font-size: 0.85rem;">
+            A confirmation email has been logged to <br>
+            <strong id="summaryEmail" class="text-gold"></strong>
+          </p>
         </div>
-        <div class="modal-body p-4">
-          <p class="mb-2">Thank you, <strong id="summaryName"></strong>!</p>
-          <p class="text-muted">We have logged your reservation details for <strong>Fork & Flame</strong>:</p>
-          
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between"><span>Date:</span> <strong id="summaryDate"></strong></li>
-            <li class="list-group-item d-flex justify-content-between"><span>Time:</span> <strong id="summaryTime"></strong></li>
-            <li class="list-group-item d-flex justify-content-between"><span>Guests:</span> <strong id="summaryGuests"></strong></li>
-          </ul>
-          <p class="text-muted small mb-0">A confirmation update will be sent to <span id="summaryEmail" class="text-primary"></span>.</p>
+
+        <div class="modal-footer border-0 justify-content-center pt-2">
+          <button type="button" class="btn btn-gold-action px-4" data-bs-dismiss="modal">Done</button>
         </div>
-        <div class="modal-footer border-0">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
+
       </div>
     </div>
   </div>
@@ -204,10 +283,10 @@
         const formData = new FormData(bookingForm);
 
         try {
-                const response = await fetch('Process.php', {
-                method: 'POST',
-                body: formData
-            });
+          const response = await fetch('Process.php', {
+            method: 'POST',
+            body: formData
+          });
 
           const result = await response.json();
 
@@ -229,14 +308,10 @@
           } else {
             alert('Error: ' + result.message);
           }
-          } catch (error) {
-            console.error('Submission error:', error);
-            alert('Error details: ' + error.message);
-          }
-        /*} catch (error) {
+        } catch (error) {
           console.error('Submission error:', error);
-          alert('An error occurred while submitting your booking.');
-        }*/
+          alert('Error details: ' + error.message);
+        }
       });
     }
   });
