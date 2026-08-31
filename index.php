@@ -6,12 +6,10 @@
     <title>Fork & Flame | Fine Dining Experience</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="mainpage.css">
-
 </head>
 
 <body>
-    <!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.php">Fork & Flame</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,11 +27,14 @@
               <a class="nav-link" href="AboutUs.php">About us</a>
             </li>
           </ul>
+          <div class="d-flex gap-2">
+            <a href="login.php" class="btn btn-outline-light">Login</a>
+            <a href="register.php" class="btn btn-warning">Sign Up</a>
+          </div>
         </div>
       </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero-section">
         <div>
             <h1 class="hero-title">FORK & FLAME</h1>
@@ -42,7 +43,6 @@
         </div>
     </section>
 
-    <!-- Highlights Section -->
     <section class="container my-5 py-4">
         <div class="row g-4 text-center">
             <div class="col-md-4">
