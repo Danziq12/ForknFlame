@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,9 +30,16 @@
               <a class="nav-link" href="AboutUs.php">About us</a>
             </li>
           </ul>
+          
           <div class="d-flex gap-2">
-            <a href="login.php" class="btn btn-outline-light">Login</a>
-            <a href="register.php" class="btn btn-warning">Sign Up</a>
+            <?php if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] === true): ?>
+                <!-- Hidden Login/Sign Up, display Logout when session exists -->
+                <a href="logout.php" class="btn btn-outline-light">Logout</a>
+            <?php else: ?>
+                <!-- Display Login and Sign Up when not logged in -->
+                <a href="login.php" class="btn btn-outline-light">Login</a>
+                <a href="register.php" class="btn btn-warning">Sign Up</a>
+            <?php endif; ?>
           </div>
         </div>
       </div>
