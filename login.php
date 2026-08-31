@@ -228,7 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     ?>
 
 
-                    <form method="POST">
+                    <form action="loginprocess.php" method="POST">
 
                         <div class="mb-3">
 
