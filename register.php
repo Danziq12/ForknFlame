@@ -16,9 +16,9 @@ if (
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    $email = trim($_POST["email"]);
-    $password = $_POST["password"];
-    $confirmPassword = $_POST["confirm_password"];
+    $email = trim($_POST["email"] ?? '');
+    $password = $_POST["password"] ?? '';
+    $confirmPassword = $_POST["confirm_password"] ?? '';
 
     if (
         empty($email) ||
@@ -42,71 +42,47 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     } else {
 
-        $checkSql = "
-            SELECT id
-            FROM users
-            WHERE email = ?
-            LIMIT 1
-        ";
+        try {
+            // 1. Check if email already exists using PDO
+            $checkSql = "SELECT id FROM users WHERE email = ? LIMIT 1";
+            $checkStmt = $pdo->prepare($checkSql);
+            $checkStmt->execute([$email]);
 
-        $checkStmt = $conn->prepare($checkSql);
+            if ($checkStmt->fetch()) {
 
-        $checkStmt->bind_param(
-            "s",
-            $email
-        );
-
-        $checkStmt->execute();
-
-        $result = $checkStmt->get_result();
-
-        if ($result->num_rows > 0) {
-
-            $error = "This email is already registered. Please login.";
-
-        } else {
-
-            $hashedPassword = password_hash(
-                $password,
-                PASSWORD_DEFAULT
-            );
-
-            $insertSql = "
-                INSERT INTO users
-                (email, password)
-                VALUES (?, ?)
-            ";
-
-            $stmt = $conn->prepare($insertSql);
-
-            $stmt->bind_param(
-                "ss",
-                $email,
-                $hashedPassword
-            );
-
-            if ($stmt->execute()) {
-
-                header("Location: login.php?registered=1");
-                exit();
+                $error = "This email is already registered. Please login.";
 
             } else {
 
-                $error = "Registration failed. Please try again.";
+                // 2. Hash password and insert user using PDO
+                $hashedPassword = password_hash(
+                    $password,
+                    PASSWORD_DEFAULT
+                );
 
+                $insertSql = "INSERT INTO users (email, password) VALUES (?, ?)";
+                $stmt = $pdo->prepare($insertSql);
+
+                if ($stmt->execute([$email, $hashedPassword])) {
+
+                    header("Location: login.php?registered=1");
+                    exit();
+
+                } else {
+
+                    $error = "Registration failed. Please try again.";
+
+                }
             }
-
-            $stmt->close();
+        } catch (PDOException $e) {
+            $error = "Database error: " . $e->getMessage();
         }
-
-        $checkStmt->close();
     }
 }
 
 ?>
 
 <!DOCTYPE html>
-
 <html>
 
 <head>
