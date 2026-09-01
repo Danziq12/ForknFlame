@@ -52,8 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $mail->SMTPAuth   = true;
                 $mail->Username   = 'danish.ziqry0512@gmail.com';
                 $mail->Password   = 'ajjxxnbjcjehxyjp'; // App Password without spaces
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port       = 587;
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                $mail->Port       = 465;
 
                 // Sender and Recipient
                 $mail->setFrom('danish.ziqry0512@gmail.com', 'Danziq'); // Quotes added here
