@@ -3,5 +3,6 @@
         "php": ">=8.1",
         "ext-pdo": "*",
         "ext-pdo_mysql": "*"
+        "phpmailer/phpmailer": "^6.9"
     }
 }
