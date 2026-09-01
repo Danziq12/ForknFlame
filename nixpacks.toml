@@ -1,5 +1,2 @@
-[providers]
-providers = ["php"]
-
-[php]
-phpExtensions = ["pdo", "pdo_mysql", "mysqli", "mbstring", "openssl"]
+[phases.setup]
+nixPkgs = ["...", "php", "phpPackages.pdo_mysql"]
