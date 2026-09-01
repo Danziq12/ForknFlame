@@ -45,20 +45,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             try {
                 // Fetch SMTP settings from Railway Environment Variables
-                $smtpUser = $_ENV['SMTP_USER'] ?? getenv('SMTP_USER') ?: 'your_email@gmail.com';
-                $smtpPass = $_ENV['SMTP_PASS'] ?? getenv('SMTP_PASS') ?: 'your_app_password';
+                $smtpUser = $_ENV['SMTP_USER'] ?? getenv('SMTP_USER') ?: 'your_actual_gmail@gmail.com';
 
                 // Server Settings
                 $mail->isSMTP();
                 $mail->Host       = 'smtp.gmail.com';
                 $mail->SMTPAuth   = true;
                 $mail->Username   = $smtpUser;
-                $mail->Password   = 'ajjx xnbj cjeh xyjp';
+                $mail->Password   = 'ajjxxnbjcjehxyjp';
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port       = 587;
 
                 // Sender and Recipient
-                $mail->setFrom($smtpUser,Danziq);
+                $mail->setFrom($smtpUser,'Danziq');
                 $mail->addAddress($user['email']);
 
                 // Content
