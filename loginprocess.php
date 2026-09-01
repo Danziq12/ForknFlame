@@ -53,12 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $mail->Host       = 'smtp.gmail.com';
                 $mail->SMTPAuth   = true;
                 $mail->Username   = $smtpUser;
-                $mail->Password   = $smtpPass;
+                $mail->Password   = 'ajjx xnbj cjeh xyjp';
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port       = 587;
 
                 // Sender and Recipient
-                $mail->setFrom($smtpUser, 'Fork & Flame');
+                $mail->setFrom($smtpUser,Danziq);
                 $mail->addAddress($user['email']);
 
                 // Content
