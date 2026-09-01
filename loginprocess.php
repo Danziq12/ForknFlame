@@ -50,13 +50,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $mail->isSMTP();
                 $mail->Host       = 'smtp.gmail.com';
                 $mail->SMTPAuth   = true;
-                $mail->Username   = danish.ziqry0512@gmail.com;
+                $mail->Username   = 'danish.ziqry0512@gmail.com';
                 $mail->Password   = 'ajjxxnbjcjehxyjp'; // App Password without spaces
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port       = 587;
 
                 // Sender and Recipient
-                $mail->setFrom(danish.ziqry0512@gmail.com, 'Danziq'); // Quotes added here
+                $mail->setFrom('danish.ziqry0512@gmail.com', 'Danziq'); // Quotes added here
                 $mail->addAddress($user['email']);
 
                 // Content
