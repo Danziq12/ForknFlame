@@ -1,2 +1,5 @@
 [providers]
-php = { pdo_mysql = true }
+providers = ["php"]
+
+[php]
+phpExtensions = ["pdo", "pdo_mysql", "mysqli", "mbstring", "openssl"]
