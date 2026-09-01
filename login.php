@@ -33,7 +33,7 @@
                             <input type="password" name="password" class="form-control" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                        <button type="submit" class="btn btn-primary w-100">Login & Request OTP</button>
                     </form>
 
                     <div class="text-center mt-3">
