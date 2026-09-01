@@ -19,13 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     try {
-        // Fetch user from the database
+        // Fetch user from database
         $stmt = $pdo->prepare("SELECT id, email, password FROM users WHERE email = ? LIMIT 1");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
         if (!$user) {
-            // User not found in database
             header("Location: login.php?error=not_found");
             exit();
         }
@@ -44,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $mail = new PHPMailer(true);
 
             try {
-                // Fetch SMTP settings from Railway Environment Variables
+                // Fetch email from environment variable or set your actual Gmail address here
                 $smtpUser = $_ENV['SMTP_USER'] ?? getenv('SMTP_USER') ?: 'your_actual_gmail@gmail.com';
 
                 // Server Settings
@@ -52,12 +51,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $mail->Host       = 'smtp.gmail.com';
                 $mail->SMTPAuth   = true;
                 $mail->Username   = $smtpUser;
-                $mail->Password   = 'ajjxxnbjcjehxyjp';
+                $mail->Password   = 'ajjxxnbjcjehxyjp'; // App Password without spaces
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port       = 587;
 
                 // Sender and Recipient
-                $mail->setFrom($smtpUser,'Danziq');
+                $mail->setFrom($smtpUser, 'Danziq'); // Quotes added here
                 $mail->addAddress($user['email']);
 
                 // Content
@@ -84,14 +83,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 exit();
 
             } catch (Exception $e) {
-                // Log error and redirect
-                error_log("PHPMailer Error: " . $mail->ErrorInfo);
-                header("Location: login.php?error=mail_failed");
-                exit();
+                // Display error explicitly during debugging
+                die("PHPMailer Error: " . $mail->ErrorInfo);
             }
 
         } else {
-            // Incorrect password
             header("Location: login.php?error=wrong_password");
             exit();
         }
