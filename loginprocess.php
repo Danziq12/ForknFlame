@@ -43,20 +43,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $mail = new PHPMailer(true);
 
             try {
-                // Fetch email from environment variable or set your actual Gmail address here
-                $smtpUser = $_ENV['SMTP_USER'] ?? getenv('SMTP_USER') ?: 'your_actual_gmail@gmail.com';
+                $smtpUser = 'danish.ziqry0512@gmail.com';
 
                 // Server Settings
                 $mail->isSMTP();
                 $mail->Host       = 'smtp.gmail.com';
                 $mail->SMTPAuth   = true;
-                $mail->Username   = 'danish.ziqry0512@gmail.com';
-                $mail->Password   = 'ajjxxnbjcjehxyjp'; // App Password without spaces
+                $mail->Username   = $smtpUser;
+                $mail->Password   = 'ajjxxnbjcjehxyjp';
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                 $mail->Port       = 465;
+                $mail->Timeout    = 5; // Prevent long hanging if network fails
 
                 // Sender and Recipient
-                $mail->setFrom('danish.ziqry0512@gmail.com', 'Danziq'); // Quotes added here
+                $mail->setFrom($smtpUser, 'Danziq');
                 $mail->addAddress($user['email']);
 
                 // Content
