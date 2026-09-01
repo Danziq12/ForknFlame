@@ -12,20 +12,21 @@ $error_message = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $entered_otp = trim($_POST['otp'] ?? '');
 
-    if (time() > $_SESSION['otp_expires']) {
+    if (time() > ($_SESSION['otp_expires'] ?? 0)) {
         $error_message = "OTP code has expired. Please log in again.";
         unset($_SESSION['pending_user_id'], $_SESSION['pending_email'], $_SESSION['otp_code'], $_SESSION['otp_expires']);
-    } elseif ($entered_otp == $_SESSION['otp_code']) {
-        // Complete the authentication session
+    } elseif ((string)$entered_otp === (string)($_SESSION['otp_code'] ?? '')) {
+        // Complete the authentication session safely
         session_regenerate_id(true);
         $_SESSION["logged_in"] = true;
         $_SESSION["user_id"]   = $_SESSION['pending_user_id'];
-        $_SESSION["email"]     = $_SESSION['pending_email'];
+        $_SESSION["email"]      = $_SESSION['pending_email'];
 
         // Clean up temporary OTP values
         unset($_SESSION['pending_user_id'], $_SESSION['pending_email'], $_SESSION['otp_code'], $_SESSION['otp_expires']);
 
-        header("Location: index.php");
+        // Redirect logged-in member to the booking workflow
+        header("Location: Booking.php");
         exit();
     } else {
         $error_message = "Invalid verification code. Please try again.";
@@ -33,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                     <form action="verify_otp.php" method="POST">
                         <div class="mb-3">
-                            <input type="text" name="otp" class="form-control text-center fs-3" placeholder="123456" maxlength="6" required autofocus>
+                            <input type="text" name="otp" class="form-control text-center fs-3" placeholder="123456" maxlength="6" pattern="\d{6}" required autofocus autocomplete="one-time-code">
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Verify & Complete Login</button>
                     </form>
